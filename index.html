@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integração API com HTMX</title>
+    <!-- Incluindo apenas o HTMX puro -->
+    <script src="https://unpkg.com"></script>
+    
+</head>
+<body>
+
+    <h1>Gerenciador de Nomes</h1>
+
+    <!-- 1- Formulário para salvar o nome (POST /nomes) -->
+    <div class="box">
+        <h2>Cadastrar Nome</h2>
+        <form hx-post="https://ola-tp1.onrender.com/nomes" 
+              hx-target="#resultado-cadastro" 
+              hx-swap="innerHTML">
+            
+            <input type="text" name="nome" placeholder="Digite um nome para salvar..." required>
+            <button type="submit">Salvar Nome</button>
+        </form>
+        <div id="resultado-cadastro" class="resultado">A resposta do servidor aparecerá aqui...</div>
+    </div>
+
+    <!-- 2- Botão para listar os nomes (GET /nomes) -->
+    <div class="box">
+        <h2>Nomes Armazenados</h2>
+        <button hx-get="https://ola-tp1.onrender.com/nomes" 
+                hx-target="#lista-nomes" 
+                hx-swap="innerHTML">
+            Listar Nomes
+        </button>
+        <div id="lista-nomes" class="resultado">Clique no botão para carregar a lista...</div>
+    </div>
+
+</body>
+</html>
